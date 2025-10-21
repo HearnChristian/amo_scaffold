@@ -1,0 +1,3 @@
+- at_ms: 0
+  set:
+    camera.exposure_ms: 10

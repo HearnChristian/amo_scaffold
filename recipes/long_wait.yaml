@@ -1,0 +1,5 @@
+- at_ms: 0
+  set:
+    laser.power: 0.10
+- at_ms: 1500
+  status: [laser]

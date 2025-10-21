@@ -1,0 +1,4 @@
+- at_ms: not_a_number
+  set:
+    laser.power:: 0.5
+    laser.detune_mhz: "oops
