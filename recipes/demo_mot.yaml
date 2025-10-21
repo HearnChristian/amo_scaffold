@@ -1,0 +1,12 @@
+- at_ms: 0
+  set:
+    laser.power: 0.10
+    laser.detune_mhz: -18.0
+  status:
+    - laser
+- at_ms: 200
+  set:
+    laser.power: 0.12
+- at_ms: 400
+  status:
+    - laser
