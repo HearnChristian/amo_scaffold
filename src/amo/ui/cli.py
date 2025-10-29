@@ -1,19 +1,31 @@
-import argparse
+import typer
+from amo.io.config import get_influx_config
+from amo.io.sinks.influx import InfluxSink
+from amo.io.loggers.rga import stream_rga_csv_to_influx, upload_rga_folder
 
-def build_parser():
-    p = argparse.ArgumentParser(prog="amo", description="AMO scaffold CLI")
-    sub = p.add_subparsers(dest="cmd", required=True)
+app = typer.Typer(no_args_is_help=True)
 
-    s = sub.add_parser("set", help="Set a device parameter")
-    s.add_argument("target", help="e.g., laser.power")
-    s.add_argument("value", type=float)
+@app.command()
+def influx_test():
+    """Write a single test point to InfluxDB."""
+    cfg = get_influx_config()
+    with InfluxSink(cfg.url, cfg.token, cfg.org, cfg.bucket) as sink:
+        sink.write("amo_ping", {"value": 1.0}, {"who": "cli"})
+    typer.echo("✅ InfluxDB write OK.")
 
-    g = sub.add_parser("get", help="Get a device parameter")
-    g.add_argument("target", help="e.g., laser.power")
+@app.command()
+def rga_log(csv: str, follow: bool = True):
+    """Stream an RGA CSV into InfluxDB (tail-f style)."""
+    cfg = get_influx_config()
+    with InfluxSink(cfg.url, cfg.token, cfg.org, cfg.bucket) as sink:
+        stream_rga_csv_to_influx(csv, sink, follow=follow)
 
-    st = sub.add_parser("status", help="Show device status")
-    st.add_argument("device", help="e.g., laser")
+@app.command()
+def rga_upload(folder: str):
+    """Upload all CSV files in a folder into InfluxDB."""
+    cfg = get_influx_config()
+    with InfluxSink(cfg.url, cfg.token, cfg.org, cfg.bucket) as sink:
+        upload_rga_folder(folder, sink)
 
-    r = sub.add_parser("run", help="Run a YAML recipe")
-    r.add_argument("recipe_path", help="recipes/demo.yaml")
-    return p
+if __name__ == "__main__":
+    app()
