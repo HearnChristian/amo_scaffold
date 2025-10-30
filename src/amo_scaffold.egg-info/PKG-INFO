@@ -1,0 +1,6 @@
+Metadata-Version: 2.4
+Name: amo_scaffold
+Version: 0.1.0
+Summary: Digital Twin Hardware Scaffold
+Author: Christian Thomas Hearn
+Requires-Python: >=3.10
