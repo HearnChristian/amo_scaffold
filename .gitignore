@@ -17,3 +17,7 @@ __pycache__/
 *.pyc
 meep_pypolar_integration.py
 .env
+
+# Ignore caches
+__pycache__/
+*.pyc
