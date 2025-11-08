@@ -1,4 +1,5 @@
-import time, random
+import time
+import random
 from typing import Dict, Any, Iterable
 from .interfaces import (Device, Channels, ClockConsumer, TunableFrequency,
                          PhaseAdjustable, AmplitudeAdjustable, CommitRequired, ReadbackState)
@@ -11,7 +12,6 @@ class SimDDS(Device, Channels, ClockConsumer, TunableFrequency,
         self._f = [0.0] * n_ch
         self._p = [0.0] * n_ch
         self._a = [0.0] * n_ch
-        self._last_update = None
 
     # Device
     def id(self) -> str: return "sim:dds"
@@ -50,3 +50,12 @@ class SimDDS(Device, Channels, ClockConsumer, TunableFrequency,
         return {"t": self._last_update, "sysclk_Hz": self._sys,
                 "ch":[{"f_Hz":self._f[i],"phase_deg":self._p[i],"amp":self._a[i],"power_est":power[i]}
                       for i in range(len(self._f))]}
+
+    def set_frequency(self, ch: int, hz: float) -> None:
+        self._f[ch] = float(hz)
+    def get_frequency(self, ch: int) -> float:
+        return self._f[ch]
+    def set_phase(self, ch: int, deg: float) -> None:
+        self._p[ch] = float(deg)
+    def get_phase(self, ch: int) -> float:
+        return self._p[ch]

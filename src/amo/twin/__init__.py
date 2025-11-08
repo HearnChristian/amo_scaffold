@@ -1,2 +1,2 @@
-# src/amo/twin/__init__.py
-from .logger import TwinLogger
+from .logger import TwinLogger as TwinLogger
+__all__ = ["TwinLogger"]

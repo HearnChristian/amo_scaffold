@@ -1,0 +1,19 @@
+{
+  "input": "H",
+  "nodes": [
+    {
+      "type": "waveplate",
+      "theta": 22.5,
+      "retard": 180.0
+    },
+    {
+      "type": "pbs",
+      "theta": 45,
+      "branch": "T"
+    },
+    {
+      "type": "polarizer",
+      "theta": 0.0
+    }
+  ]
+}

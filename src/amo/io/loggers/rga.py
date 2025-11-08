@@ -1,6 +1,14 @@
-import csv, time, pathlib
-from typing import Dict, Tuple
+import csv
+from typing import Any, Sequence, Iterable, Optional, Dict, Tuple
 from amo.io.sinks.influx import InfluxSink
+import time
+import pathlib
+
+# typing helpers
+def _coerce_headers(h: Optional[Sequence[str]]) -> Sequence[str]:
+    return list(h) if h is not None else []
+def _coerce_values(v: Iterable[Any] | Sequence[Any]) -> Iterable[Any]:
+    return list(v)
 
 def parse_rga_csv_row(row: Dict[str, str]) -> Tuple[Dict[str, float], Dict[str, str]]:
     """Extract numeric RGA fields + static tags from one CSV row."""

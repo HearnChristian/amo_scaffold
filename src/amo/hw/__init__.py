@@ -1,9 +1,17 @@
-# Re-export capability protocols so callers import from amo.hw, not deep paths
 from .interfaces import (
-    Device, Channels, ClockConsumer,
-    TunableFrequency, PhaseAdjustable, AmplitudeAdjustable,
-    CommitRequired, Triggerable, Sweepable, ReadbackState
+    Device as Device,
+    Channels as Channels,
+    ClockConsumer as ClockConsumer,
+    TunableFrequency as TunableFrequency,
+    PhaseAdjustable as PhaseAdjustable,
+    AmplitudeAdjustable as AmplitudeAdjustable,
+    CommitRequired as CommitRequired,
+    Triggerable as Triggerable,
+    Sweepable as Sweepable,
+    ReadbackState as ReadbackState,
 )
 
-# Optional: expose the simulator here too for convenience
-from .dds_sim import SimDDS  # noqa: F401
+__all__ = [
+    "Device","Channels","ClockConsumer","TunableFrequency","PhaseAdjustable",
+    "AmplitudeAdjustable","CommitRequired","Triggerable","Sweepable","ReadbackState",
+]

@@ -15,8 +15,10 @@ class SimLaser(Device):
             self.detune_mhz = float(detune_mhz)
 
     def get(self, what: str):
-        if what == "power": return self.power
-        if what == "detune_mhz": return self.detune_mhz
+        if what == "power":
+            return self.power
+        if what == "detune_mhz":
+            return self.detune_mhz
         return None
 
     def status(self):
