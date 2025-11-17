@@ -1,0 +1,16 @@
+{
+  "devices": [
+    {
+      "id": "hwp_motor",
+      "type": "mock_motor",
+      "model": "MOCK_MOTOR_01",
+      "params": {}
+    },
+    {
+      "id": "pm1",
+      "type": "mock_power_meter",
+      "model": "MOCK_PM_01",
+      "params": {}
+    }
+  ]
+}

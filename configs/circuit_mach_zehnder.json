@@ -1,0 +1,24 @@
+{
+  "name": "mach_zehnder_demo",
+  "blocks": [
+    {"id": "laser1", "type": "laser", "params": {"power_mw": 10.0, "pol_angle_deg": 0.0, "wavelength_m": 1.064e-6}},
+    {"id": "bs1", "type": "npbs50", "params": {}},
+    {"id": "mirrorA", "type": "mirror", "params": {"reflectivity": 1.0}},
+    {"id": "mirrorB", "type": "mirror", "params": {"reflectivity": 1.0}},
+    {"id": "bs2", "type": "npbs50", "params": {}},
+    {"id": "pd0", "type": "power_detector", "params": {}},
+    {"id": "pd1", "type": "power_detector", "params": {}}
+  ],
+  "connections": [
+    ["laser1", 0, "bs1", 0],
+
+    ["bs1", 0, "mirrorA", 0],
+    ["bs1", 1, "mirrorB", 0],
+
+    ["mirrorA", 0, "bs2", 0],
+    ["mirrorB", 0, "bs2", 1],
+
+    ["bs2", 0, "pd0", 0],
+    ["bs2", 1, "pd1", 0]
+  ]
+}

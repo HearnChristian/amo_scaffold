@@ -1,0 +1,13 @@
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "amo_scaffold"
+version = "0.1.0"
+description = "Digital Twin Hardware Scaffold"
+authors = [{name = "Christian Thomas Hearn"}]
+requires-python = ">=3.10"
+
+[tool.setuptools.packages.find]
+where = ["src"]

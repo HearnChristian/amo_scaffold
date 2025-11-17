@@ -1,0 +1,41 @@
+{
+  "name": "demo_hwp_polarizer",
+  "blocks": [
+    {
+      "id": "laser1",
+      "type": "laser",
+      "params": {
+        "power_mw": 10.0,
+        "pol_angle_deg": 0.0,
+        "wavelength_m": 1.064e-6
+      }
+    },
+    {
+      "id": "hwp1",
+      "type": "hwp",
+      "params": {
+        "angle_deg": 22.5
+      }
+    },
+    {
+      "id": "pol1",
+      "type": "polarizer",
+      "params": {
+        "axis_deg": 0.0,
+        "efficiency": 1.0
+      }
+    },
+    {
+      "id": "m1",
+      "type": "mirror",
+      "params": {
+        "reflectivity": 0.99
+      }
+    },
+    {
+      "id": "pd1",
+      "type": "power_detector",
+      "params": {}
+    }
+  ]
+}

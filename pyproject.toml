@@ -1,13 +1,34 @@
 [build-system]
-requires = ["setuptools"]
+requires = ["setuptools>=61.0", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "amo_scaffold"
+name = "amo-digital-twin"
 version = "0.1.0"
-description = "Digital Twin Hardware Scaffold"
-authors = [{name = "Christian Thomas Hearn"}]
+description = "Modular AMO digital twin with block-based optics, hardware abstraction, control, and ML calibration."
+authors = [{ name = "Christian Hearn" }]
+readme = "README.md"
 requires-python = ">=3.10"
+dependencies = [
+    "numpy>=1.25",
+]
 
-[tool.setuptools.packages.find]
-where = ["src"]
+[project.optional-dependencies]
+dev = [
+    "pytest",
+    "mypy",
+    "black",
+]
+
+[project.scripts]
+amo-twin = "amo_digital_twin.examples.simple_pipeline:main"
+amo-hwp-scan = "amo_digital_twin.experiments.hwp_scan:main"
+amo-hwp-fit = "amo_digital_twin.experiments.hwp_fit:main"
+amo-hwp-scan-hal = "amo_digital_twin.experiments.hwp_scan_hal:main"
+amo-calibrate-hwp = "amo_digital_twin.ml.hwp_calibration:main"
+amo-nd-scan-hal = "amo_digital_twin.experiments.nd_scan_hal:main"
+amo-calibrate-nd = "amo_digital_twin.ml.nd_calibration:main"
+amo-hwp-lock = "amo_digital_twin.control.hwp_power_lock:main"
+amo-run-circuit = "amo_digital_twin.examples.run_circuit:main"
+
+amo-run-graph-circuit = "amo_digital_twin.examples.run_graph_circuit:main"
